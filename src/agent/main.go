@@ -16,7 +16,6 @@ import (
 
 var (
 	dockerClient  *client.Client
-	pruneInterval = os.Getenv("prune_interval")
 	statsInterval = os.Getenv("stats_interval")
 	logFormat     = os.Getenv("log_format")
 	logLevel      = os.Getenv("log_level")
@@ -54,9 +53,11 @@ func init() {
 func main() {
 
 	logrus.WithFields(logrus.Fields{
-		"log_format":     logFormat,
-		"log_level":      logLevel,
-		"stats_interval": statsInterval,
+		"environmnent": map[string]interface{}{
+			"log_format":     logFormat,
+			"log_level":      logLevel,
+			"stats_interval": statsInterval,
+		},
 	}).Info("starting up...")
 
 	var err error
