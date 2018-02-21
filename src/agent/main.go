@@ -67,6 +67,7 @@ func main() {
 		return
 	}
 
+	stats()
 	c := cron.New()
 	c.AddFunc(statsInterval, stats)
 	c.Start()
